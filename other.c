@@ -28,16 +28,17 @@ return (0);
  */
 char *_strdup(char *str)
 {
-char *new;
+char *new = NULL;
 int i = 0;
+size_t len = _strlen(str) + 1;
 
 if (str == NULL)
 return (NULL);
-new = malloc(sizeof(char) * (_strlen(str) + 1));
+new = malloc(sizeof(char) * len);
 if (new == NULL)
 {
-return (NULL);
 free(new);
+return (NULL);
 }
 while (str[i] != '\0')
 {

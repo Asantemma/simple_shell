@@ -62,12 +62,12 @@ waitpid(pid, NULL, 0);
  */
 void path_check(char **args, char **env)
 {
-char *path;
+char *path, *token;
 char *command = NULL;
 char *path_array[MAX_PATH];
-char *token;
 struct stat st;
 int i = 0;
+int j = 0;
 
 path = _getenv("PATH");
 token = strtok(path, ":");
@@ -77,27 +77,27 @@ path_array[i] = malloc(sizeof(char) * MAX_PATH);
 if (path_array[i] == NULL)
 {
 perror("Error");
-free(path_array[i]);
+for (j = 0; j < i; j++)
+free(path_array[j]);
 return;
 }
 _strncpy(path_array[i], token, MAX_PATH);
 path_array[MAX_PATH - 1] = '\0';
-
 command = _strncat(path_array[i], "/", 1);
 command = _strncat(command, args[0], _strlen(args[0]));
-
-/* Check if the command exists */
 if (stat(command, &st) == 0)
 {
-i = 0;
 execute(command, args, env);
-free(path_array[i]);
+for (j = 0; j <= i; j++)
+free(path_array[j]);
 return;
 }
 token = strtok(NULL, ":");
+i++;
 }
 perror("Error");
-free(path_array[i]);
+for (j = 0; j <= i; j++)
+free(path_array[j]);
 return;
 }
 

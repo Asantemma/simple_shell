@@ -1,4 +1,4 @@
-nclude "shell.h"
+#include "shell.h"
 
 /**
  * _strncmp - compares two strings
@@ -30,21 +30,19 @@ return (0);
 char *_getenv(char *name)
 {
 int i = 0;
-char *token;
 char *env_var;
-char *env_value;
+char *env_value = NULL;
+size_t len;
+
+len = _strlen(name);
 
 while (environ[i] != NULL)
 {
 env_var = _strdup(environ[i]);
-token = strtok(env_var, "=");
-if (_strcmp(token, name) == 0)
+if (_strncmp(env_var, name, len) == 0 && env_var[len] == '=')
 {
-token = strtok(NULL, "=");
-env_value = _strdup(token);
-free(env_var);
+env_value = env_var + len + 1;
 return (env_value);
-free(env_value);
 }
 free(env_var);
 i++;
@@ -131,3 +129,4 @@ i++;
 }
 dest[i] = '\0';
 return (dest);
+}
