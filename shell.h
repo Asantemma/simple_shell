@@ -16,13 +16,15 @@
 extern char **environ;
 #define MAX_LINE 1024
 #define MAX_ARGS 10
-#define MAX_PATH 100
+#define MAX_PATH 2048
+#define MAX_VARS 100
+#define MAX_TOKENS 100
 
 /* FUNCTION PROTOTYPES */
 
 /* main.c */
 int main(void);
-int builtins(char **args, char **env);
+int builtins(char **args);
 
 /* welcome.c */
 void welcome(void);
@@ -31,7 +33,7 @@ void welcome(void);
 void show_prompt(void);
 
 /* interpreter.c */
-void parse_input(char *buffer, char **args);
+int parse_input(char *buffer, char **args);
 void command_AR(char **args, char **env);
 void path_check(char **args, char **env);
 void execute(char *command, char **args, char **env);
@@ -54,6 +56,7 @@ char *_get_token(char *token, const char *delim, int n);
 
 /* exit_shell.c */
 void exit_sh(char **args);
+int get_exit_status(void);
 
 /* getline.c */
 char *_getline(const int fd);
@@ -75,5 +78,10 @@ char *_strcpy(char *dest, char *src);
 /* other_2.c */
 char *_strncat(char *dest, char *src, int n);
 char *_strntok(char *str, const char *delim, int n);
+char *_strchr(char *s, char c);
+char *itoa(int num);
+
+/* arguments.c */
+int parse_args(char *buffer, char **args);
 
 #endif
