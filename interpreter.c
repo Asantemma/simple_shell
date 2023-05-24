@@ -91,7 +91,7 @@ free(path_array[j]);
 return;
 }
 _strncpy(path_array[i], token, MAX_PATH);
-path_array[MAX_PATH - 1] = '\0';
+path_array[i][MAX_PATH - 1] = '\0';
 command = _strncat(path_array[i], "/", 1);
 command = _strncat(command, args[0], _strlen(args[0]));
 if (stat(command, &st) == 0)
