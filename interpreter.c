@@ -14,13 +14,15 @@ char *token;
 token = strtok(buffer, ";");
 while (token != NULL)
 {
-commands[i] = malloc(sizeof(char) * MAX_LINE);
+commands[i] = _strdup(token);
 if (commands[i] == NULL)
 {
 perror("Error");
+for (i = 0; commands[i] != NULL; i++)
+free(commands[i]);
+free(commands);
 return (0);
 }
-_strncpy(commands[i], token, MAX_LINE);
 token = strtok(NULL, ";");
 i++;
 }

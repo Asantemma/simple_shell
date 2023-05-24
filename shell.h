@@ -56,7 +56,6 @@ char *_get_token(char *token, const char *delim, int n);
 
 /* exit_shell.c */
 void exit_sh(char **args);
-int get_exit_status(void);
 
 /* getline.c */
 char *_getline(const int fd);
@@ -64,7 +63,7 @@ char *_getline(const int fd);
 /* other.c */
 int _strcmp(char *s1, char *s2);
 char *_strcat(char *dest, char *src);
-char *_strdup(char *str);
+char *_strdup(const char *str);
 int _atoi(char *s);
 int _strlen(const char *s);
 
@@ -73,7 +72,7 @@ int _strncmp(char *s1, char *s2, int n);
 char *_getenv(char *name);
 char *_strtok(char *str, const char *delim);
 char *_strncpy(char *dest, char *src, int n);
-char *_strcpy(char *dest, char *src);
+char *_strcpy(char *dest, const char *src);
 
 /* other_2.c */
 char *_strncat(char *dest, char *src, int n);

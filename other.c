@@ -26,26 +26,20 @@ return (0);
  * @str: string
  * Return: pointer to new string
  */
-char *_strdup(char *str)
+char *_strdup(const char *str)
 {
 char *new = NULL;
-int i = 0;
 size_t len = _strlen(str) + 1;
 
 if (str == NULL)
 return (NULL);
-new = malloc(sizeof(char) * len);
+new = malloc(len);
 if (new == NULL)
 {
-free(new);
+perror("Error: Memory not allocated");
 return (NULL);
 }
-while (str[i] != '\0')
-{
-new[i] = str[i];
-i++;
-}
-new[i] = '\0';
+_strcpy(new, str);
 return (new);
 free(new);
 }
