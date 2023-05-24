@@ -24,6 +24,8 @@ extern char **environ;
 
 /* main.c */
 int main(void);
+int args_handler(int commands_count, char **commands,
+char **args, char **env);
 int builtins(char **args);
 
 /* welcome.c */

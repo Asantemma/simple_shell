@@ -10,7 +10,7 @@ char buffer[MAX_LINE];
 char *args[MAX_ARGS];
 char *commands[MAX_ARGS];
 int status = 1;
-int num_commands, num_args, i, j = 0;
+int num_commands= 0;
 ssize_t bytes_read = 0;
 
 while (status)
@@ -31,7 +31,25 @@ exit(1);
 }
 buffer[bytes_read - 1] = '\0';
 num_commands = parse_input(buffer, commands);
-for (i = 0; i < num_commands; i++)
+args_handler(num_commands, commands, args, environ);
+}
+return (0);
+}
+
+/**
+ * args_handler - handles arguments
+ * @commands_count: number of commands
+ * @commands: commands
+ * @args: arguments
+ * @env: environment variables
+ * Return: 0 if successful
+ */
+int args_handler(int commands_count, char **commands,
+char **args, char **env)
+{
+int i, j, num_args = 0;
+
+for (i = 0; i < commands_count; i++)
 {
 num_args = parse_args(commands[i], args);
 if (num_args == 0)
@@ -47,12 +65,11 @@ free(args[j]);
 continue;
 }
 if (access(args[0], F_OK) == 0)
-command_AR(args, environ);
+command_AR(args, env);
 else
-path_check(args, environ);
+path_check(args, env);
 for (j = 0; args[j] != NULL; j++)
 free(args[j]);
-}
 }
 return (0);
 }
