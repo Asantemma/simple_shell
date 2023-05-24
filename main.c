@@ -77,7 +77,6 @@ return (0);
 /**
  * builtins - checks for builtins
  * @args: arguments
- * @env: environment variables
  * Return: 1 if builtin, 0 if not
  */
 int builtins(char **args)
