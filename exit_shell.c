@@ -3,7 +3,7 @@
 /**
  * exit_sh - exits the shell
  * @args: array of arguments
- * Return: void
+ * Return: exit status
  */
 void exit_sh(char **args)
 {

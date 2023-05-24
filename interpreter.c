@@ -3,22 +3,29 @@
 /**
  * parse_input - parses the input from the user
  * @buffer: buffer to store the input
- * @args: array of arguments
- * Return: void
+ * @commands: array of commands
+ * Return: number of commands
  */
-void parse_input(char *buffer, char **args)
+int parse_input(char *buffer, char **commands)
 {
 int i = 0;
 char *token;
 
-token = strtok(buffer, " \n");
+token = strtok(buffer, ";");
 while (token != NULL)
 {
-args[i] = token;
-token = strtok(NULL, " \n");
+commands[i] = malloc(sizeof(char) * MAX_LINE);
+if (commands[i] == NULL)
+{
+perror("Error");
+return (0);
+}
+_strncpy(commands[i], token, MAX_LINE);
+token = strtok(NULL, ";");
 i++;
 }
-args[i] = NULL;
+commands[i] = NULL;
+return (i);
 }
 
 /**
