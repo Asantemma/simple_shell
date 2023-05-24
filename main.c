@@ -10,7 +10,7 @@ char buffer[MAX_LINE];
 char *args[MAX_ARGS];
 char *commands[MAX_ARGS];
 int status = 1;
-int num_commands= 0;
+int num_commands = 0;
 ssize_t bytes_read = 0;
 
 while (status)
