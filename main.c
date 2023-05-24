@@ -10,7 +10,7 @@ char buffer[MAX_LINE];
 char *args[MAX_ARGS];
 char *commands[MAX_ARGS];
 int status = 1;
-int num_commands = 0;
+int i, num_commands = 0;
 ssize_t bytes_read = 0;
 
 while (status)
@@ -32,6 +32,8 @@ exit(1);
 buffer[bytes_read - 1] = '\0';
 num_commands = parse_input(buffer, commands);
 args_handler(num_commands, commands, args, environ);
+for (i = 0; i < num_commands; i++)
+free(commands[i]);
 }
 return (0);
 }

@@ -26,21 +26,17 @@ return (0);
  * @str: string
  * Return: pointer to new string
  */
-char *_strdup(const char *str)
+char *_strdup(char *str)
 {
-char *new = NULL;
+char *ptr = NULL;
 size_t len = _strlen(str) + 1;
+char *new = malloc(len);
 
 if (str == NULL)
 return (NULL);
+ptr = _strncpy(new, str, len);
+return (ptr);
 new = malloc(len);
-if (new == NULL)
-{
-perror("Error: Memory not allocated");
-return (NULL);
-}
-_strcpy(new, str);
-return (new);
 free(new);
 }
 
@@ -98,7 +94,7 @@ return (dest);
  * @s: string
  * Return: length of string
  */
-int _strlen(const char *s)
+int _strlen(char *s)
 {
 int i = 0;
 

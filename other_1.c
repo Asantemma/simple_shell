@@ -38,13 +38,12 @@ len = _strlen(name);
 
 while (environ[i] != NULL)
 {
-env_var = _strdup(environ[i]);
+env_var = environ[i];
 if (_strncmp(env_var, name, len) == 0 && env_var[len] == '=')
 {
 env_value = env_var + len + 1;
 return (env_value);
 }
-free(env_var);
 i++;
 }
 return (NULL);

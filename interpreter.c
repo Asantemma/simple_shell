@@ -9,20 +9,22 @@
 int parse_input(char *buffer, char **commands)
 {
 int i = 0;
+int j = 0;
 char *token;
 
 token = strtok(buffer, ";");
 while (token != NULL)
 {
-commands[i] = _strdup(token);
+commands[i] = malloc(sizeof(char) * MAX_LINE);
 if (commands[i] == NULL)
 {
 perror("Error");
-for (i = 0; commands[i] != NULL; i++)
-free(commands[i]);
-free(commands);
+for (j = 0; j < i; j++)
+free(commands[j]);
 return (0);
 }
+_strncpy(commands[i], token, MAX_LINE);
+commands[i][MAX_LINE - 1] = '\0';
 token = strtok(NULL, ";");
 i++;
 }

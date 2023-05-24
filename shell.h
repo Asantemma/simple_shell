@@ -65,9 +65,9 @@ char *_getline(const int fd);
 /* other.c */
 int _strcmp(char *s1, char *s2);
 char *_strcat(char *dest, char *src);
-char *_strdup(const char *str);
+char *_strdup(char *str);
 int _atoi(char *s);
-int _strlen(const char *s);
+int _strlen(char *s);
 
 /* other_1.c */
 int _strncmp(char *s1, char *s2, int n);
